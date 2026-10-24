@@ -20,6 +20,9 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r rare.txt
+      
+      - name: Setup Cloudflare WARP
+        uses: fscarmen/warp-action@v1.1.2
 
       - name: Run Script
         run: |
