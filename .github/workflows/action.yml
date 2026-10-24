@@ -20,24 +20,6 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r rare.txt
-      
-      - name: Install WireGuard and wgcf (Cloudflare WARP)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wireguard resolvconf
-          sudo wget -O /usr/local/bin/wgcf https://github.com/ViRb3/wgcf/releases/download/v2.3.1/wgcf_2.3.1_linux_amd64
-          sudo chmod +x /usr/local/bin/wgcf
-
-      - name: Connect Cloudflare WARP
-        run: |
-          # Free WARP account register karein
-          wgcf register --accept-tos
-          # Profile generate karein
-          wgcf generate
-          # WireGuard tunnel on karein
-          sudo wg-quick up ./wgcf-profile.conf
-          # Check karein ke WARP on ho gaya
-          curl -s https://www.cloudflare.com/cdn-cgi/trace | grep warp
 
       - name: Run Script
         run: |
@@ -52,7 +34,7 @@ jobs:
       
       - name: Commit and push changes
         run: |
-          git add rubrypass.txt rubrypass_json.txt
+          git add rubrypass.txt rubrypass_json.txt taken.txt
           git fetch origin main
           git reset --soft origin/main
           if git diff --cached --quiet; then
