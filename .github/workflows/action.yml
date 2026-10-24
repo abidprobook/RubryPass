@@ -52,7 +52,7 @@ jobs:
       
       - name: Commit and push changes
         run: |
-          git add rugbypass.txt rugbypass_json.txt
+          git add rubrypass.txt rubrypass_json.txt
           git fetch origin main
           git reset --soft origin/main
           if git diff --cached --quiet; then
